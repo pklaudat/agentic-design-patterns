@@ -36,13 +36,13 @@ resource "azurerm_cosmosdb_account" "this" {
   public_network_access_enabled         = true
 
   backup {
-    type = "Periodic"
-    storage_redundancy = "Local"
-    retention_in_hours = 8
+    type                = "Periodic"
+    storage_redundancy  = "Local"
+    retention_in_hours  = 8
     interval_in_minutes = 1440
   }
 
-  
+
 
   ip_range_filter = var.ip_range_filter
 

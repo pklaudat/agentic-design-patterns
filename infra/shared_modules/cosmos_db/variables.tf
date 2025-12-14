@@ -31,18 +31,18 @@ variable "databases_config" {
     name       = string
     throughput = number
     containers = list(object({
-      name             = string
-      partition_key    = string
-      throughput       = number
+      name          = string
+      partition_key = string
+      throughput    = number
       vector_embedding_policy = optional(list(object({
-        path       = optional(string, "/vector")
+        path             = optional(string, "/vector")
         distanceFunction = optional(string, "cosine")
-        dimensions = optional(number, 1536)
-        dataType   = optional(string, "float32")
+        dimensions       = optional(number, 1536)
+        dataType         = optional(string, "float32")
       })), [])
-      indexing_policy  = object({
-        automatic     = optional(bool, true)
-        indexingMode  = optional(string, "consistent")
+      indexing_policy = object({
+        automatic    = optional(bool, true)
+        indexingMode = optional(string, "consistent")
         includedPaths = list(object({
           path = optional(string, "/*")
         }))
@@ -50,11 +50,11 @@ variable "databases_config" {
           path = optional(string, "/\"_etag\"/?")
         }))
         vectorIndexes = optional(list(object({
-          path          = optional(string, "/vector"),
-          type     = optional(string, "quantizedFlat"),
+          path = optional(string, "/vector"),
+          type = optional(string, "quantizedFlat"),
         })), [])
       })
-    })) 
+    }))
   }))
   default = []
 }
@@ -64,4 +64,19 @@ variable "free_tier_enabled" {
   description = "Enable free tier for the Cosmos DB account."
   type        = bool
   default     = false
+}
+
+variable "readonly_access_principal_id" {
+  description = "ReadOnly access principal id. Used to perform data plane role assignment."
+  type        = string
+  default     = null
+  nullable    = true
+}
+
+
+variable "write_access_principal_id" {
+  description = "RW access principal id. Used to perform data plane role assignment."
+  type        = string
+  default     = null
+  nullable    = true
 }

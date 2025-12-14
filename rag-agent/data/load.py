@@ -13,7 +13,7 @@ from extract import extract_data
 
 cosmos_client = CosmosClient(url=os.getenv("COSMOSDB_URL"), credential=DefaultAzureCredential())
 
-database_name = "VectorDB"
+database_name = "vectorSearchDB"
 
 db = cosmos_client.get_database_client(database=database_name)
 

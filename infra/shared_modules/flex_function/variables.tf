@@ -38,6 +38,11 @@ variable "service_plan_id" {
   default     = null
 }
 
+variable "app_settings" {
+  type        = map(string)
+  description = "Custom app settings for this app."
+}
+
 variable "monitoring_enabled" {
   type        = bool
   description = "Enable monitoring via application insights."

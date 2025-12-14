@@ -46,7 +46,7 @@ def _write_query_debug(query: str, parameters: Any) -> None:
 
 def vector_search(vectors: List[float], similarity_score: float = 0.02, num_results: int = 5):
 
-    _write_vectors_to_file(vectors)
+    # _write_vectors_to_file(vectors)
 
     query_text = '''
         SELECT TOP @num_results c.overview, VectorDistance(c.vector, @embedding) as SimilarityScore 
@@ -62,7 +62,7 @@ def vector_search(vectors: List[float], similarity_score: float = 0.02, num_resu
     ]
 
     # Write debug file with full query and params (best-effort)
-    _write_query_debug(query_text, parameters)
+    # _write_query_debug(query_text, parameters)
 
     query_result = container.query_items(
         query=query_text,
